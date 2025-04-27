@@ -240,15 +240,18 @@ Train: {train_r2} \t Test: {test_r2}
 # Result
 print("""
 RMSE
-# Train: 33910.83631269176 	 Test: 39213.66158762593
+-----
+Train: 33910.83631269176 	 Test: 39213.66158762593
 
-# R-squared
-# Train: 0.797440530843669 	 Test: 0.7878321566714682
+R-squared
+---------
+Train: 0.797440530843669 	 Test: 0.7878321566714682
 
-## Explanation of result
-# The test RMSE is only slightly higher than the train RMSE. This is good
-# - it suggests that the model generalizes reosonbly well to unseen data.
-# there's no huge gap. --which would indicate overfitting
+Explanation of result:
+----------------------
+The test RMSE is only slightly higher than the train RMSE. This is good
+- it suggests that the model generalizes reosonbly well to unseen data.
+There's no huge gap. --which would indicate overfitting
 """)
 
 ```python
