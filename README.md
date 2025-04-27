@@ -72,6 +72,8 @@ assert y.shape == (1460,)
 ```
 
 Now that you have `X` and `y`, perform a train-test split ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)). Let's say that 40% of the data should be in the test set (60% in the train set), and the random state should be 42.
+
+```python
 # CodeGrade step1.2
 # Replace None with appropriate code
 
@@ -80,6 +82,9 @@ from sklearn.model_selection import train_test_split
 
 # Perform train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+```
+
+```python
 # Checking the shapes
 # (If this fails, make sure you specified the appropriate test_size)
 assert X_train.shape == (876, 33)
@@ -89,6 +94,8 @@ assert y_train.shape == (876,)
 # (If this fails, make sure you specified the appropriate random_state)
 assert X_train.iloc[100]["YearBuilt"] == 1947
 assert y_train.iloc[100] == 110000
+```
+
 ## 2. Preprocess Data
 
 ### Ridge Regression Recap
