@@ -119,6 +119,8 @@ The difference is the $\lambda \sum_{j=1}^p m_j^2$ at the end, where $\lambda$ i
 Ridge regression, which uses L2 norm regularization, means that feature values need to be standardized so that some values aren't penalized "unfairly". So let's go ahead and apply a `StandardScaler` ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)) to the entire feature set, fitting and transforming `X_train` and transforming `X_test`.
 
 Create new variables `X_train_scaled` and `X_test_scaled` which are the scaled versions of `X_train` and `X_test`. Remember to avoid data leakage.
+
+```python
 # CodeGrade step2
 # Replace None with appropriate code
 
@@ -133,6 +135,9 @@ X_train_scaled = scaler.fit_transform(X_train)
 
 # Transform X_test
 X_test_scaled = scaler.transform(X_test)
+```
+
+```python
 import numpy as np
 
 # scaler should be a StandardScaler
@@ -148,6 +153,9 @@ assert X_train_scaled[0][0] != X_train.iloc[0].iloc[0]
 # Same goes for X_test_scaled
 assert X_test_scaled.shape == X_test.shape
 assert X_test_scaled[0][0] != X_test.iloc[0].iloc[0]
+```
+
+
 ## 3. Fit a `Ridge` Model
 
 Now that we have our preprocessed data, fit a `Ridge` regression model ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html)).
