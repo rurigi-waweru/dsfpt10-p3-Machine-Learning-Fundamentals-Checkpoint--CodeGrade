@@ -161,6 +161,8 @@ assert X_test_scaled[0][0] != X_test.iloc[0].iloc[0]
 Now that we have our preprocessed data, fit a `Ridge` regression model ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html)).
 
 When instantiating the model, specify an `alpha` (regularization penalty) of 100, a `solver` of `"sag"` (stochastic average gradient descent), and a `random_state` of 1.
+
+```python
 # CodeGrade step3
 # Replace None with appropriate code
 
@@ -173,10 +175,15 @@ model = Ridge(alpha=100, solver="sag", random_state=1)
 # Fit the model on the scaled training data
 model.fit(X_train_scaled, y_train)
 # model should be a Ridge regressor
+```
+
+```python
 assert type(model) == Ridge
 
 # model should be fitted
 assert type(model.coef_) == np.ndarray
+```
+
 ## 4. Evaluate the Model Performance
 
 First, use the fitted model to generate `SalePrice` predictions for both the train and the test data. These variables should be called `y_pred_train` for the training data and `y_pred_test` for the testing data.
@@ -184,10 +191,15 @@ First, use the fitted model to generate `SalePrice` predictions for both the tra
 Make sure you use the scaled versions of the data!
 
 We will use these predictions to evaluate the model performance.
+
+```python
 # CodeGrade step4.1
 # Replace None with appropriate code
 y_pred_train = model.predict(X_train_scaled)
 y_pred_test = model.predict(X_test_scaled)
+```
+
+```python
 # Both should be NumPy arrays
 assert type(y_pred_train) == np.ndarray
 assert type(y_pred_test) == np.ndarray
@@ -195,12 +207,16 @@ assert type(y_pred_test) == np.ndarray
 # Should have the same shapes as y_train and y_test, respectively
 assert y_pred_train.shape == y_train.shape
 assert y_pred_test.shape == y_test.shape
+```
+
 Now, use those predicted values to evaluate the model in terms of both:
 
 * RMSE, using `mean_squared_error` ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html)) with `squared=False`
 * R-squared, using `r2_score` ([documentation here](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html))
 
 Apply these to both the train and test datasets. We have already imported the necessary functions; you just need to call the functions and pass in the appropriate data.
+
+```python
 # CodeGrade step4.2
 # Replace None with appropriate code
 
@@ -219,23 +235,31 @@ Train: {train_rmse} \t Test: {test_rmse}
 R-squared
 Train: {train_r2} \t Test: {test_r2}
 """)
+```
 
-# RMSE
+# Result
+print("""
+RMSE
 # Train: 33910.83631269176 	 Test: 39213.66158762593
 
 # R-squared
 # Train: 0.797440530843669 	 Test: 0.7878321566714682
 
-## Explantion of result
+## Explanation of result
 # The test RMSE is only slightly higher than the train RMSE. This is good
 # - it suggests that the model generalizes reosonbly well to unseen data.
 # there's no huge gap. --which would indicate overfitting
+""")
+
+```python
 # RMSE scores should be floating point numbers
 assert type(train_rmse) == np.float64 or type(train_rmse) == float
 assert type(test_rmse) == np.float64 or type(test_rmse) == float
 # R-squared scores should be floating point numbers
 assert type(train_r2) == np.float64 or type(train_r2) == float
 assert type(test_r2) == np.float64 or type(test_r2) == float
+```
+
 ## 5. Interpret the Model Performance
 
 Here's we'll focus on RMSE metrics, since those can be represented as "the average error in the price prediction".
@@ -243,6 +267,8 @@ Here's we'll focus on RMSE metrics, since those can be represented as "the avera
 Recall that the purpose of using regularization (e.g. a `Ridge` model) is to reduce overfitting.
 
 Let's say that we previously used a basic ordinary least squares regression model, and we got RMSE scores of `$33,633.14` on the training data and `$39,255.80` on the test data. A full comparison of scores is in the table below:
+
+```python
 # Run this cell without changes
 scores = pd.DataFrame([
     {"Model": "Linear Regression", "Train RMSE": 33633.14, "Test RMSE": 39255.80},
