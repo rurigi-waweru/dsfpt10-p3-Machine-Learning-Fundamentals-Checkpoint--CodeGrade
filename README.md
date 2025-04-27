@@ -237,8 +237,9 @@ Train: {train_r2} \t Test: {test_r2}
 """)
 ```
 
-# Result
 print("""
+RESULTS:
+========
 RMSE
 -----
 Train: 33910.83631269176 	 Test: 39213.66158762593
@@ -258,6 +259,7 @@ There's no huge gap. --which would indicate overfitting
 # RMSE scores should be floating point numbers
 assert type(train_rmse) == np.float64 or type(train_rmse) == float
 assert type(test_rmse) == np.float64 or type(test_rmse) == float
+
 # R-squared scores should be floating point numbers
 assert type(train_r2) == np.float64 or type(train_r2) == float
 assert type(test_r2) == np.float64 or type(test_r2) == float
@@ -279,16 +281,25 @@ scores = pd.DataFrame([
 ])
 scores.set_index("Model", inplace=True)
 scores.style.format("${:,.2f}")
+```
+
 Was our strategy of using a `Ridge` model to reduce overfitting successful? Which model is better?
 
 Assign the variable `best_model_name` to either `"Linear Regression"` or `"Ridge Regression"`.
 
 Recall that this is a predictive modeling context, so when we are defining the "best" model, we are interested in the model performance on unseen data.
+
+```python
 # CodeGrade step5
 # Replace None with appropriate code
 best_model_name = "Ridge Regression"
+```
+
+```python
 # Should be "Linear Regression" or "Ridge Regression"
 assert best_model_name in ["Linear Regression", "Ridge Regression"]
+```
+
 ### Take-aways and conclusion, `Brian-added`
 
 The Ridge model has a slightly higher train RMSE (33,910.84 vs. 33,633.14 for Linear Regression), but its test RMSE is marginally lower (39,213.66 vs. 39,255.80 for Linear Regression). Since test RMSE reflects how well the model generalizes to unseen data, the Ridge model’s better performance on the test set indicates it generalizes slightly better than the Linear Regression model. Although Ridge has a slightly higher train RMSE, its improved test performance suggests that regularization is effectively helping to prevent overfitting. Overall, the Ridge model performs slightly better due to its better generalization on unseen data, making it the better choice.
