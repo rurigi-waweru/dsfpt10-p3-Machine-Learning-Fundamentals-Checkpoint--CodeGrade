@@ -237,6 +237,7 @@ Train: {train_r2} \t Test: {test_r2}
 """)
 ```
 
+```python
 print("""
 RESULTS:
 ========
@@ -254,6 +255,7 @@ The test RMSE is only slightly higher than the train RMSE. This is good
 - it suggests that the model generalizes reosonbly well to unseen data.
 There's no huge gap. --which would indicate overfitting
 """)
+```
 
 ```python
 # RMSE scores should be floating point numbers
